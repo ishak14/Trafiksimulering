@@ -2,36 +2,56 @@ import java.util.Random;
 
 public class Car{
 
-    private int bornTime;
+    private int bornTime; //gjort de public
     private int dest; // 1 för rakt fram, 2 för vänstersväng   
-	public int intPosition;
-	public boolean spookyCar;
+	private int intPosition; //gjort de public
+	
     
     // konstruktor och get-metoder
-    public Car(int _bornTime, int _dest){
+    public Car(int _bornTime){
+    	
+    	Random rand = new Random();
+    	
     		bornTime = _bornTime;
-    		dest = _dest; /// åker endast rakt just nu.......	
-    		intPosition = 19;
+    		dest =  (rand.nextInt((2 - 1) + 1) + 1);
+    		intPosition = 1337;
     }  
     
-    public Car(boolean spookyCar){
+    public Car(){
     	
     	Random rand = new Random();
     	
-    	bornTime = 2;
-    	dest = (rand.nextInt((2 - 1) + 1) + 1);
-    	intPosition = 1;
-    	this.spookyCar = spookyCar;
-    }
-
-    public Car() {
-    	Random rand = new Random();
-    	
-    	bornTime = 2;
+    	bornTime = 0;
     	dest = (rand.nextInt((2 - 1) + 1) + 1);
     	intPosition = 1337;
-    	spookyCar = true;
+  
     }
+    
+
+    
+    public int getDestination() {
+    	return dest;
+    }
+    
+    public void sub1_IntPosition() {
+    	intPosition += -1;
+    }
+    
+    public void addBornTime(int a){
+    	bornTime += bornTime + a;
+    }
+    
+    public int getIntPosition(){
+    	return this.intPosition;
+    }
+    
+    public void setIntPosition(int a){
+    	this.intPosition = a;
+    }
+    
+  
+
+   
 
     public String  toString()  {
     	   	
@@ -41,17 +61,7 @@ public class Car{
     	}
 }
     	   
-    /*
-    	else{
-    		return "Car (bornTime: " + this.bornTime +", " +
-    				"Destination: <Empty>, " +
-    				"currentPosition: " + "spookyCar" + ")" + "\n";
-    	}
-    	}
-    }
-*/
-    
-    
+
     
     
     

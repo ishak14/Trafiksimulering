@@ -22,24 +22,7 @@ public class Lane{
     public int getLength(){
     	return this.theLane.length;
     }
-    
-    /*
-    public void step() {
-    	
-      	for(int i = 0; i < (getLength() - 1); i++){
-        	if(theLane[i].spookyCar == true && theLane[i+1].spookyCar == false){
-        			theLane[i] = theLane[i+1];
-        			theLane[i+1] = new Car();
-        			theLane[i].intPosition += -1;
-        			// varfšr vill den inte hŠmta intPosition?
-        		}
-        	}
-    	
-	// Stega fram alla fordon (utom det pŒ plats 0) ett steg 
-        // (om det gŒr). (Fordonet pŒ plats 0 tas bort utifrŒn 
-	// mm h a metoden nedan.)
-    }
-    */
+
     
     public void step() {
     	
@@ -47,8 +30,9 @@ public class Lane{
         	if(theLane[i] == null && theLane[i+1] != null){
         			theLane[i] = theLane[i+1];
         			theLane[i+1] = null;
-        			theLane[i].intPosition += -1;
-        			// varfšr vill den inte hŠmta intPosition?
+        			theLane[i].sub1_IntPosition();
+        			theLane[i].addBornTime(1);
+        			// bilens borntime adderas med 1 fšr alla bilar
         		}
         	}
       	
@@ -57,16 +41,7 @@ public class Lane{
 	// mm h a metoden nedan.)
     }
     
-/*
-    public Car getFirst() {
-    
-    	Car firstCar = theLane[0];
-    		
-    	theLane[0].spookyCar = true;
-    		return firstCar;
-    		//returnerar bilen som stŒr fšrst och tar bort den frŒn lane
-    }
-    */
+
 
     public Car getFirst() {
     
@@ -81,16 +56,16 @@ public class Lane{
     	return theLane[0];
 	// Returnera bilen som stŒr fšrst utan att ta bort den
     }
-
-/*
-    public boolean lastFree() {
-    	if(theLane[(theLane.length) - 1].spookyCar == true)
+    
+    public boolean firstNotNull() {
+    	if(theLane[0] != null) 
     		return true;
     	else
     		return false;
-	// Returnera true om sista platsen ledig, annars false
-    }
-    */
+    		  
+    	}
+    
+
    
     public boolean lastFree() {
     	if(theLane[(theLane.length) - 1] == null )
@@ -103,8 +78,10 @@ public class Lane{
     public void beginLast(int size_n) throws OverflowException {
     	if (lastFree() == true){
     		
-    		theLane[size_n - 1] = new Car(false);
-    		theLane[size_n - 1].intPosition = ((size_n) - 1);
+    		
+    		theLane[size_n - 1] = new Car();
+    		theLane[size_n - 1].setIntPosition(size_n - 1);
+    		
     	}
     	else
     	{
@@ -119,7 +96,7 @@ public class Lane{
     	if (lastFree() == true){
     		
     		this.theLane[size_n - 1] = oldLane.getFirst();
-    		this.theLane[size_n - 1].intPosition = ((size_n) - 1);
+    		this.theLane[size_n - 1].setIntPosition(size_n - 1);
     	}
     	else
     	{
@@ -164,7 +141,7 @@ public static void main(String args[]){
 
 	LT.putLast(L, LT.getLength());	
 	System.out.println(LS + "--" +  L);
-	//LT.step();
+	LT.step();
 
 	System.out.println("                                  //");
 	System.out.println(LT);

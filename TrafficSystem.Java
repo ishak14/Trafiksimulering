@@ -5,19 +5,38 @@ public class TrafficSystem {
     // Samlar statistik
     
     // Attribut som beskriver beståndsdelarna i systemet
-    private Lane  r0;
-    private Lane  r1;
-    private Lane  r2;
+    private Lane r0;
+    private Lane r1;
+    private Lane r2;
+    private Lane d1;
+    private Lane d2;
     private Light s1;
     private Light s2;
+    private int Destination1;
+    private int Destination2;
+    
 
     // Diverse attribut för simuleringsparametrar (ankomstintensiteter,
-    // destinationer...)
-
-    // Diverse attribut för statistiksamling
-    ....    
+    int period;
+    int greenPeriod;
+    int arrivalIntensity;
     
     private int time = 0;
+    //ankomstintensitet =!=! hur ofta bilarna spawn
+    // destinationer...) statistik för destinationer de hamnar på
+    
+    public void destination_Stat(){
+    	if (r1.firstCar() != null)
+    		Destination1 += 1;
+    	
+    	if (r2.firstCar() != null)
+    		Destination2 += 1;
+    }
+
+    // Diverse attribut för statistiksamling
+    
+    
+
 
     public TrafficSystem() {...}
 
@@ -31,7 +50,35 @@ public class TrafficSystem {
     }
 
     public void step() {
-	// Stega systemet ett tidssteg m h a komponenternas step-metoder
+      	r0.step();
+    	r1.step();
+    	r2.step();
+    	
+    	Car r1Car, r2Car;
+    	
+    	if (s1.isGreen())
+    		r1Car = r1.getFirst();
+    	if (s2.isGreen())
+    		r2Car = r2.getFirst();
+    	
+    	
+    	if(r0.firstNotNull())
+    		{
+    		
+    	if(r0.firstCar().destination() == 2 && r2.lastFree())
+    		r2.putLast(r0, r2.getLength());
+    	else { if(r1.lastFree())
+    		r1.putLast(r0, r1.getLength());
+    		 }
+    	
+    		}
+    
+    	if(r0.lastFree())
+    		r0.beginLast(r0.getLength());
+    	
+    	s1.step();
+    	s2.step();
+ 
 	// Skapa bilar, lägg in och ta ur på de olika Lane-kompenenterna
     }
 
