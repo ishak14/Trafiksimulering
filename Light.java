@@ -10,6 +10,8 @@ public class Light {
     	this.green = green;
     }
 
+
+
     public void step() { 
     	
     	if (time == period){
@@ -19,6 +21,14 @@ public class Light {
     		time++;	
     	
        // Stegar fram klocka ett steg
+    }
+    
+    public void setPeriod(int _period){
+    	this.period = _period;
+    }
+    
+    public void setGreen(int _green){
+    	this.green = _green;
     }
 
     public boolean isGreen()   {

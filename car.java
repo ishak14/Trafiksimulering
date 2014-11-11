@@ -1,3 +1,4 @@
+
 import java.util.Random;
 
 public class Car{
@@ -5,8 +6,7 @@ public class Car{
     private int bornTime; //gjort de public
     private int dest; // 1 för rakt fram, 2 för vänstersväng   
 	private int intPosition; //gjort de public
-	
-    
+	   
     // konstruktor och get-metoder
     public Car(int _bornTime){
     	
@@ -27,10 +27,11 @@ public class Car{
   
     }
     
-
-    
     public int getDestination() {
     	return dest;
+    }
+    public int getBorntime(){
+    	return bornTime;
     }
     
     public void sub1_IntPosition() {
@@ -38,7 +39,7 @@ public class Car{
     }
     
     public void addBornTime(int a){
-    	bornTime += bornTime + a;
+    	bornTime +=  a;
     }
     
     public int getIntPosition(){
@@ -49,15 +50,13 @@ public class Car{
     	this.intPosition = a;
     }
     
-  
-
-   
-
-    public String  toString()  {
-    	   	
-    	return "(Car: bornTime: " + this.bornTime +", " +
-    				"Destination: " + this.dest +", " +
-    				"currentPosition: " + this.intPosition + ")";
+    public String toString()  {
+    	   	/*
+    	return "[Car(bT: " + this.bornTime +", " +
+    				"D: " + this.dest +", " +
+    				"cP: " + this.intPosition + ")" + "]";
+    				*/
+    	return "(||"+ this.bornTime + "|]";
     	}
 }
     	   
